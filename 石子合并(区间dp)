@@ -1,0 +1,51 @@
+/*********************题目：石子合并 ****************/
+/*********************时间：2019.6.18**************/
+
+
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <algorithm>
+
+using namespace std;
+const int M=310;
+typedef long long ll;
+int a[M],sum[M];
+int dp[M][M];
+ll MAX_ = 1e9+7;
+int sove(int l,int r)
+{
+    int ans=dp[l][r];
+    if(ans!=MAX_)return ans;
+    else if(l==r)return 0;
+    else if(r-l==1)
+    {
+        return dp[l][r]=a[l]+a[r];
+    }
+    else{
+        for(int k=l;k<r;k++)
+        {
+            ans=min(sove(l,k)+sove(k+1,r)+sum[r]-sum[l-1],ans);
+        }
+    }
+    return dp[l][r]=ans;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<M;i++)
+    {
+        for(int j=0;j<M;j++)
+        {
+            dp[i][j]=MAX_;
+        }
+    }
+    for(int i=1;i<=n;i++)
+    {
+        scanf("%d",a+i);
+        sum[i]=sum[i-1]+a[i];
+    }
+    int d=sove(1,n);
+    cout<<d<<endl;
+}
