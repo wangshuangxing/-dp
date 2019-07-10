@@ -1,0 +1,51 @@
+/*******************************
+*******时间：2019.7.11*********************************
+*******括号匹配****************************************
+*******转移方程****************************************
+***dp[i][j] = max(dp[i][j], dp[i][k] + dp[k +1 ][j]);**
+*******预处理方程 
+***if(s[i] == '(' && s[j] == ')' || s[i] == '[' && s[j] == ']')
+****{
+********dp[i][j] = dp[i + 1][j - 1] + 2;
+****}
+*******************************/
+
+/*
+#include <string>
+#include <cmath>
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+
+typedef long long ll;
+int dp[110][110];
+string s;
+int main()
+{
+    while(cin >> s)
+    {
+        if(s=="end")break;
+        memset(dp, 0, sizeof(dp));
+        int n = s.length();
+        for(int len = 1; len < n; len ++)
+        {
+            for(int i = 0, j = len; j < n; j++, i++)
+            {
+                if(s[i] == '(' && s[j] == ')' || s[i] == '[' && s[j] == ']')
+                {
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                }
+                for(int k = i; k < j; k ++)
+                {
+                    dp[i][j] = max(dp[i][j], dp[i][k] + dp[k +1 ][j]);
+                }
+            }
+        }
+        cout << dp[0][n - 1] << endl;
+    }
+    return 0;
+}
+
+*/
