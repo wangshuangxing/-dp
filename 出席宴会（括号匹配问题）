@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+#include <cstring>
+#include <algorithm>
+
+
+using namespace std;
+int a[110];
+int dp[110][110];
+int main()
+{
+    int t;
+    cin >> t;
+    int q = 0;
+    while(t --)
+    {
+        q++;
+        int n;
+        cin >> n;
+        memset(dp,0,sizeof(dp));
+        for(int i = 1; i <= n; i++ )
+        {
+            cin >> a[i];
+        }
+        for(int i = 1; i <= n; i++)
+        {
+            dp[i][i] = 1;
+        }
+        for(int len = 1; len <= n; len ++)
+        {
+            for(int i = 1; i <= n; i++)
+            {
+                int j = i + len - 1;
+                dp[i][j] = dp[i][j - 1] + 1;//这个是a[j]需要新衣服的，即第j是算进去的
+                 if(j > n)break;
+                for(int k = i; k < j; k ++)
+                {
+                    if(a[k] == a[j])
+                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j - 1]);//第j件不算新衣服的
+                }
+            }
+        }
+        cout <<"Case "<<q<<": "<< dp[1][n] <<endl;
+    }
+    return 0;
+}
