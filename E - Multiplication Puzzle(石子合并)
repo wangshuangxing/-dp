@@ -1,0 +1,41 @@
+/******************************************************************
+类型：石子合并****************************************************
+区间长度最短为3；*************************************************
+状态方程：********************************************************
+dp[i][j] = min(dp[i][j],dp[i][k] + dp[k][j] + a[k] * a[i] * a[j]);*
+******************************************************************/
+/*
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+#include <algorithm>
+#include <string>
+#define MAX_ 100000000
+using namespace std;
+typedef long long ll;
+int a[110];
+int dp[110][110];
+int main()
+{
+    int n;
+    cin >> n;
+    for(int i = 1; i <= n; i ++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(int len  = 2; len < n; len ++)
+    {
+        for(int i = 1; i + len <= n; i++)
+        {
+            int j = i + len;
+            dp[i][j] = MAX_;
+            for(int k = i + 1; k < j; k++)
+            {
+                dp[i][j] = min(dp[i][j],dp[i][k] + dp[k][j] + a[k] * a[i] * a[j]);
+            }
+        }
+    }
+    cout << dp[1][n] << endl;
+    return 0;
+}
+*/
