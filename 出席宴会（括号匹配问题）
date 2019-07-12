@@ -1,3 +1,18 @@
+/**********************
+
+Halloween Costumes
+ LightOJ - 1422 
+ 状态方程：
+ dp[i][j]=dp[i][j-1]+1;
+
+if(a[j]==a[k])   //k有同一件
+
+dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+1][j-1]);
+
+边界条件：dp[i][i]=1;
+**********************/
+
+/*
 #include <iostream>
 #include <cstdio>
 #include <cmath>
@@ -45,3 +60,4 @@ int main()
     }
     return 0;
 }
+*/
